@@ -3,6 +3,7 @@ import { Link, Route, Routes } from 'react-router'
 import { sites } from './sites'
 
 const KestraLanding = lazy(() => import('./sites/kestradb-minimalist'))
+const BrutalistPortfolio = lazy(() => import('./sites/portfolio-brutalist'))
 
 // Index provisional: se reemplazará por el bento grid con previews.
 function Home() {
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kestradb" element={<KestraLanding />} />
+        <Route path="/lena-vasquez" element={<BrutalistPortfolio />} />
       </Routes>
     </Suspense>
   )

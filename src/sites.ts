@@ -13,4 +13,10 @@ export const sites: Site[] = [
     description: 'Base de datos vectorial distribuida',
     skill: 'minimalist-ui',
   },
+  {
+    slug: 'lena-vasquez',
+    name: 'Lena Vásquez',
+    description: 'Portafolio de Systems & Interface Engineer',
+    skill: 'industrial-brutalist-ui',
+  },
 ]

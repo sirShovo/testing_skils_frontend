@@ -1,0 +1,233 @@
+/* Arquetipo: Swiss Industrial Print. Cada tema es un único sustrato completo
+   (papel + tinta, o su inversión); nunca se mezclan dentro de la interfaz. */
+.brut {
+  --b-bg: #f4f4f0;
+  --b-fg: #0a0a0a;
+  --b-mute: #57574f;
+  --b-faint: #d6d5cd;
+  --b-red: #e61919;
+  --b-red-ink: #c41212;
+  --b-sans: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif;
+  --b-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --b-serif: 'EB Garamond Variable', Garamond, 'Times New Roman', serif;
+
+  font-family: var(--b-sans);
+  background: var(--b-bg);
+  color: var(--b-fg);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+
+.brut[data-theme='dark'] {
+  --b-bg: #0e0e0e;
+  --b-fg: #eaeaea;
+  --b-mute: #a3a39c;
+  --b-faint: #2c2c2a;
+  --b-red: #ff2a2a;
+  --b-red-ink: #ff4a4a;
+  color-scheme: dark;
+}
+
+.brut *,
+.brut *::before,
+.brut *::after {
+  border-radius: 0 !important;
+}
+
+.brut ::selection {
+  background: var(--b-red);
+  color: #fff;
+}
+
+.brut :focus-visible {
+  outline: 2px solid var(--b-red);
+  outline-offset: 2px;
+}
+
+/* Micro-tipografía: mono, mayúsculas, tracking mecánico. */
+.bm {
+  font-family: var(--b-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* Macro-tipografía: grotesca pesada, ancho expandido, interlineado comprimido. */
+.bx {
+  font-family: var(--b-sans);
+  font-weight: 900;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+}
+
+.bserif {
+  font-family: var(--b-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Tipo en contorno para numerales estructurales. */
+.b-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--b-fg);
+}
+
+/* Grano mecánico global. */
+.b-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.brut[data-theme='dark'] .b-grain {
+  mix-blend-mode: screen;
+  opacity: 0.05;
+  filter: invert(1);
+}
+
+/* Semitono: trama de puntos que degrada la perfección vectorial del serif. */
+.b-halftone {
+  position: relative;
+  isolation: isolate;
+}
+
+.b-halftone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at center, var(--b-bg) 0.9px, transparent 1.3px);
+  background-size: 4px 4px;
+}
+
+/* Franja de advertencia. */
+.b-stripes {
+  background-image: repeating-linear-gradient(-45deg, var(--b-fg) 0 6px, transparent 6px 12px);
+}
+
+/* Código de barras decorativo. */
+.b-barcode {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--b-fg) 0 2px,
+    transparent 2px 3px,
+    var(--b-fg) 3px 4px,
+    transparent 4px 7px,
+    var(--b-fg) 7px 10px,
+    transparent 10px 11px
+  );
+}
+
+/* Filas del índice: inversión completa al hover. */
+.b-row {
+  transition:
+    background-color 90ms linear,
+    color 90ms linear;
+}
+
+.b-row:hover,
+.b-row[aria-expanded='true'] {
+  background: var(--b-fg);
+  color: var(--b-bg);
+}
+
+.b-row:hover .b-row-mute,
+.b-row[aria-expanded='true'] .b-row-mute {
+  color: var(--b-bg);
+  opacity: 0.7;
+}
+
+.b-row .b-row-cue {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 120ms linear,
+    transform 120ms linear;
+}
+
+.b-row:hover .b-row-cue,
+.b-row[aria-expanded='true'] .b-row-cue {
+  opacity: 1;
+  transform: none;
+}
+
+/* Botón utilitario: borde duro, inversión al hover, desplazamiento al pulsar. */
+.b-btn {
+  font-family: var(--b-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  border: 1px solid var(--b-fg);
+  padding: 6px 10px;
+  background: var(--b-bg);
+  color: var(--b-fg);
+  transition:
+    background-color 80ms linear,
+    color 80ms linear;
+}
+
+.b-btn:hover:not(:disabled) {
+  background: var(--b-fg);
+  color: var(--b-bg);
+}
+
+.b-btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+}
+
+.b-btn[aria-pressed='true'] {
+  background: var(--b-red);
+  border-color: var(--b-red);
+  color: #fff;
+}
+
+.b-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Enlace: tachado rojo al hover. */
+.b-link {
+  text-decoration: none;
+  background: linear-gradient(var(--b-red), var(--b-red)) no-repeat 0 55% / 0 2px;
+  transition: background-size 160ms linear;
+}
+
+.b-link:hover {
+  background-size: 100% 2px;
+}
+
+.b-blink {
+  animation: b-blink 1s steps(1) infinite;
+}
+
+@keyframes b-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-blink {
+    animation: none;
+  }
+  .b-row,
+  .b-row .b-row-cue,
+  .b-link {
+    transition: none;
+  }
+}
+
+/* En la consola el cursor parpadeante ya indica el foco. */
+.brut input[aria-label='Comando']:focus-visible {
+  outline: none;
+}
