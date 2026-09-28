@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Enlace generado por scripts/link-skills.mjs (la fuente real es .agents/skills)
+/.claude/skills
+
