@@ -14,9 +14,9 @@ export const sites: Site[] = [
     skill: 'minimalist-ui',
   },
   {
-    slug: 'lena-vasquez',
-    name: 'Lena Vásquez',
-    description: 'Portafolio de Systems & Interface Engineer',
+    slug: 'sebastian-agudelo',
+    name: 'Sebastian Agudelo',
+    description: 'Portafolio personal · Full Stack Developer',
     skill: 'industrial-brutalist-ui',
   },
 ]

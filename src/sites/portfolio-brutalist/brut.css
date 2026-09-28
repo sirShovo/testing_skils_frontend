@@ -228,6 +228,6 @@
 }
 
 /* En la consola el cursor parpadeante ya indica el foco. */
-.brut input[aria-label='Comando']:focus-visible {
+.brut [data-console-input]:focus-visible {
   outline: none;
 }

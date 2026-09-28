@@ -30,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kestradb" element={<KestraLanding />} />
-        <Route path="/lena-vasquez" element={<BrutalistPortfolio />} />
+        <Route path="/sebastian-agudelo" element={<BrutalistPortfolio />} />
       </Routes>
     </Suspense>
   )

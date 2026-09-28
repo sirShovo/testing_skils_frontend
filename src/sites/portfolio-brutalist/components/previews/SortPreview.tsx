@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useI18n, type L } from '../../i18n'
 import { usePalette } from '../../theme'
 import { useCanvas } from './useCanvas'
 
@@ -79,14 +80,15 @@ function* merge(src: number[]): Generator<Frame> {
   yield { arr: a, active: [], sorted: a.length, ops }
 }
 
-const ALGOS: Record<Algo, { label: string; fn: (a: number[]) => Generator<Frame>; big: string }> = {
-  insertion: { label: 'Inserción', fn: insertion, big: 'O(n²)' },
-  quick: { label: 'Quicksort', fn: quick, big: 'O(n log n)' },
-  merge: { label: 'Merge', fn: merge, big: 'O(n log n)' },
+const ALGOS: Record<Algo, { label: L; fn: (a: number[]) => Generator<Frame>; big: string }> = {
+  insertion: { label: { es: 'Inserción', en: 'Insertion' }, fn: insertion, big: 'O(n²)' },
+  quick: { label: { es: 'Quicksort', en: 'Quicksort' }, fn: quick, big: 'O(n log n)' },
+  merge: { label: { es: 'Merge', en: 'Merge' }, fn: merge, big: 'O(n log n)' },
 }
 
 export function SortPreview() {
   const pal = usePalette()
+  const { t, lang } = useI18n()
   const { ref, size, ctx } = useCanvas(3.2)
   const [algo, setAlgo] = useState<Algo>('quick')
   const [frame, setFrame] = useState<Frame>(() => ({ arr: shuffled(), active: [], sorted: 0, ops: 0 }))
@@ -135,19 +137,19 @@ export function SortPreview() {
 
   return (
     <div className="space-y-3">
-      <canvas ref={ref} className="block w-full border border-current" aria-label={`Visualización de ${ALGOS[algo].label} sobre ${SIZE} elementos`} />
+      <canvas ref={ref} className="block w-full border border-current" aria-label={`${t(ALGOS[algo].label)} · ${SIZE} ${lang === 'es' ? 'elementos' : 'items'}`} />
       <div className="bm flex flex-wrap items-center gap-2">
         {(Object.keys(ALGOS) as Algo[]).map((k) => (
           <button key={k} className="b-btn" aria-pressed={algo === k} disabled={running} onClick={() => setAlgo(k)}>
-            {ALGOS[k].label}
+            {t(ALGOS[k].label)}
           </button>
         ))}
         <span className="mx-2 hidden h-4 w-px bg-current sm:block" />
         <button className="b-btn" onClick={run} disabled={running}>
-          [ Ordenar ]
+          {lang === 'es' ? '[ Ordenar ]' : '[ Sort ]'}
         </button>
         <button className="b-btn" onClick={reset}>
-          [ Mezclar ]
+          {lang === 'es' ? '[ Mezclar ]' : '[ Shuffle ]'}
         </button>
         <output className="ml-auto tabular-nums">
           {ALGOS[algo].big} · {frame.ops} ops
