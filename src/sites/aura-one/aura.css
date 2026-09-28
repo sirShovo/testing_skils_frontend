@@ -1,0 +1,221 @@
+/* Aura One · Soft Structuralism. Tokens limitados a esta página. */
+.aura {
+  --a-bg: #e8e7e3;
+  --a-bg-2: #f2f1ee;
+  --a-ink: #161616;
+  --a-ink-2: #3b3b39;
+  --a-mute: #7d7c77;
+  --a-hair: rgb(22 22 22 / 0.07);
+  --a-accent: #ff5a1f;
+  --a-alu: #d9d8d3;
+  --a-alu-2: #cfceC8;
+  --a-graphite: #1c1c1b;
+  --a-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --a-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --a-sans: 'Geist Variable', 'SF Pro Display', system-ui, sans-serif;
+  --a-mono: 'Geist Mono Variable', 'SF Mono', ui-monospace, monospace;
+
+  font-family: var(--a-sans);
+  background: var(--a-bg);
+  color: var(--a-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.aura .amono {
+  font-family: var(--a-mono);
+  font-feature-settings: 'zero' 1;
+}
+
+.aura ::selection {
+  background: var(--a-accent);
+  color: #fff;
+}
+
+.aura :focus-visible {
+  outline: 2px solid var(--a-accent);
+  outline-offset: 3px;
+}
+
+/* Grano físico, fijo y sin eventos. */
+.a-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Sombra ambiental, muy difusa. */
+.a-float {
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.03),
+    0 24px 60px -24px rgb(30 28 24 / 0.22),
+    0 60px 120px -40px rgb(30 28 24 / 0.18);
+}
+
+/* Entrada: subida pesada con desenfoque que se resuelve. */
+.a-reveal {
+  opacity: 0;
+  transform: translateY(4rem);
+  filter: blur(12px);
+  transition:
+    opacity 900ms var(--a-ease),
+    transform 900ms var(--a-ease),
+    filter 900ms var(--a-ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.a-reveal[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.a-ease {
+  transition-timing-function: var(--a-ease);
+}
+
+/* ------------------------------------------------------------------ */
+/* Dispositivo: todas las medidas en cqw para escalar con su contenedor */
+/* ------------------------------------------------------------------ */
+
+.a-device {
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 1000 / 580;
+  width: 100%;
+}
+
+.a-chassis {
+  position: absolute;
+  inset: 0;
+  border-radius: 4.2cqw;
+  padding: 0.9cqw;
+  background: linear-gradient(160deg, #eceae6 0%, #d3d2cc 55%, #c4c3bd 100%);
+  box-shadow:
+    inset 0 0.15cqw 0.1cqw rgb(255 255 255 / 0.9),
+    inset 0 -0.2cqw 0.3cqw rgb(0 0 0 / 0.08),
+    0 0.3cqw 0.4cqw rgb(0 0 0 / 0.06),
+    0 4cqw 8cqw -2cqw rgb(30 28 24 / 0.35),
+    0 9cqw 14cqw -6cqw rgb(30 28 24 / 0.25);
+}
+
+.a-plate {
+  position: absolute;
+  inset: 0.9cqw;
+  border-radius: 3.4cqw;
+  background:
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, #e3e2de, #d6d5d0);
+  box-shadow:
+    inset 0 0.1cqw 0.1cqw rgb(255 255 255 / 0.85),
+    inset 0 -0.1cqw 0.2cqw rgb(0 0 0 / 0.1);
+}
+
+.a-part {
+  position: absolute;
+  transition:
+    box-shadow 500ms var(--a-ease),
+    transform 500ms var(--a-ease);
+}
+
+/* Resalte desde las anotaciones del panel de anatomía. */
+.a-part[data-highlight='true'] {
+  box-shadow:
+    0 0 0 0.35cqw var(--a-accent),
+    0 0 0 1.2cqw rgb(255 90 31 / 0.12);
+  border-radius: 1.4cqw;
+}
+
+.a-screw {
+  position: absolute;
+  width: 1.3cqw;
+  height: 1.3cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f3f2ee, #a9a8a2 70%);
+  box-shadow: inset 0 0 0.1cqw rgb(0 0 0 / 0.3);
+}
+
+.a-screw::after {
+  content: '';
+  position: absolute;
+  inset: 45% 18%;
+  background: rgb(0 0 0 / 0.35);
+  transform: rotate(35deg);
+}
+
+.a-display {
+  border-radius: 1.4cqw;
+  background: linear-gradient(180deg, #121212, #1d1d1c);
+  box-shadow:
+    inset 0 0.2cqw 0.6cqw rgb(0 0 0 / 0.8),
+    0 0.1cqw 0 rgb(255 255 255 / 0.7);
+  padding: 1.4cqw 1.8cqw;
+  color: #e9e6df;
+  font-family: var(--a-mono);
+  font-size: 1.35cqw;
+  line-height: 1.35;
+  overflow: hidden;
+}
+
+.a-knob-cap {
+  transition: transform 180ms var(--a-ease);
+}
+
+.a-pad {
+  border-radius: 1cqw;
+  background: linear-gradient(180deg, #2a2a29, #1a1a19);
+  box-shadow:
+    inset 0 0.12cqw 0.1cqw rgb(255 255 255 / 0.12),
+    0 0.35cqw 0 #0d0d0c,
+    0 0.6cqw 1cqw -0.2cqw rgb(0 0 0 / 0.45);
+  transition:
+    transform 160ms var(--a-ease),
+    box-shadow 160ms var(--a-ease),
+    background-color 300ms var(--a-ease);
+}
+
+.a-pad:active,
+.a-pad[data-hit='true'] {
+  transform: translateY(0.3cqw);
+  box-shadow:
+    inset 0 0.12cqw 0.1cqw rgb(255 255 255 / 0.08),
+    0 0.05cqw 0 #0d0d0c,
+    0 0.2cqw 0.4cqw -0.1cqw rgb(0 0 0 / 0.4);
+}
+
+.a-pad[aria-pressed='true'] {
+  background: linear-gradient(180deg, #ff7a45, #ff5a1f);
+  box-shadow:
+    inset 0 0.12cqw 0.1cqw rgb(255 255 255 / 0.35),
+    0 0.35cqw 0 #c23c0c,
+    0 0 2.2cqw -0.2cqw rgb(255 90 31 / 0.65);
+}
+
+.a-grille {
+  background-image: radial-gradient(circle, rgb(20 20 20 / 0.55) 0.32cqw, transparent 0.38cqw);
+  background-size: 1.35cqw 1.35cqw;
+}
+
+/* Barra de navegación del track con transiciones de muelle. */
+.a-indicator {
+  transition:
+    transform 700ms var(--a-ease),
+    width 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .a-part,
+  .a-pad,
+  .a-knob-cap,
+  .a-indicator {
+    transition: none;
+  }
+}

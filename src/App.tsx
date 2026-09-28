@@ -4,6 +4,7 @@ import { sites } from './sites'
 
 const KestraLanding = lazy(() => import('./sites/kestradb-minimalist'))
 const BrutalistPortfolio = lazy(() => import('./sites/portfolio-brutalist'))
+const AuraOne = lazy(() => import('./sites/aura-one'))
 
 // Index provisional: se reemplazará por el bento grid con previews.
 function Home() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/kestradb" element={<KestraLanding />} />
         <Route path="/sebastian-agudelo" element={<BrutalistPortfolio />} />
+        <Route path="/aura-one" element={<AuraOne />} />
       </Routes>
     </Suspense>
   )

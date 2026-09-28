@@ -19,4 +19,10 @@ export const sites: Site[] = [
     description: 'Portafolio personal · Full Stack Developer',
     skill: 'industrial-brutalist-ui',
   },
+  {
+    slug: 'aura-one',
+    name: 'Aura One',
+    description: 'Sintetizador táctil · presentación de producto horizontal',
+    skill: 'high-end-visual-design',
+  },
 ]
